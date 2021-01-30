@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Vérifiez les valeurs des attributs de l'assembly
 
-<Assembly: AssemblyTitle("PSharpCompiler")>
+<Assembly: AssemblyTitle("PSharp Compiler")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("PSharpCompiler")>
-<Assembly: AssemblyCopyright("Copyright ©  2021")>
+<Assembly: AssemblyCompany("The Sharp Project")>
+<Assembly: AssemblyProduct("PSharp")>
+<Assembly: AssemblyCopyright("Copyright © The Sharp Project 2021")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

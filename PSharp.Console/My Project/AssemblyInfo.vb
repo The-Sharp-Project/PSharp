@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' Vérifiez les valeurs des attributs de l'assembly
 
-<Assembly: AssemblyTitle("PSharp.Controls")>
+<Assembly: AssemblyTitle("PSharp.Console")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("The Sharp Project")>
 <Assembly: AssemblyProduct("PSharp")>
@@ -18,7 +18,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-<Assembly: Guid("eb85dfca-3fd0-4f2e-81cb-aa83dd993a33")>
+<Assembly: Guid("7297d550-01a9-43fb-b049-a82bf34d03bb")>
 
 ' Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 '

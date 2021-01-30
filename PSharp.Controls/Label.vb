@@ -1,5 +1,4 @@
 ﻿Imports System.Drawing
-
 Public Class Label
 
     Public Property Text As String
