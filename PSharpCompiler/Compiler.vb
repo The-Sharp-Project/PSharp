@@ -2,7 +2,7 @@
 
     Public Const Version As Integer = 1.0
 
-    Public Function Compile(project As String, language As Language)
+    Public Shared Function Compile(project As String, language As Language)
         Throw New NotImplementedException("Non-implémenté")
     End Function
 

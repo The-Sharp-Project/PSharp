@@ -1,6 +1,7 @@
 ﻿Imports System.Net
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports PSharpCompiler.Compiler
 
 Module CompilerConsole
 
@@ -9,6 +10,7 @@ Module CompilerConsole
         .Enabled = False
     }
     Dim exiting As Boolean = False
+    Dim directory As String = FileIO.FileSystem.CurrentDirectory
 
 
     Sub Main()
@@ -53,12 +55,22 @@ actions:
         Console.Clear()
         WriteHeader()
         Console.WriteLine("  ")
-        Console.Write("  Searching for project in this directory")
+        Console.WriteLine("  Searching for project in this directory...")
         timer.Start()
-        For Each file As String In FileIO.FileSystem.GetFiles(".")
+        For Each file As String In FileIO.FileSystem.GetFiles(directory)
             If file.EndsWith(".psproj") Then
                 timer.Stop()
                 Console.WriteLine("  Compilig" + file + "...")
+                On Error GoTo er
+                Compile("", PSharpCompiler.Language.VisualBasic)
+                Console.WriteLine("  [1] Back")
+actionns:
+                Dim thiskey = Console.ReadKey(True).Key
+                If thiskey = ConsoleKey.D1 Then
+                    Main()
+                Else
+                    GoTo actionns
+                End If
             End If
         Next
         timer.Stop()
@@ -66,16 +78,23 @@ actions:
         Console.WriteLine("  No PSharp Project found in this directory ! Try in another directory !")
         Console.WriteLine("  ")
         Console.WriteLine("  [1] Retry")
-        Console.WriteLine("  [2] Cancel")
+        Console.WriteLine("  [2] Change direcrtory")
+        Console.WriteLine("  [3] Cancel")
 actions:
         Dim key = Console.ReadKey(True).Key
         If key = ConsoleKey.D1 Then
             CompileVB()
         ElseIf key = ConsoleKey.D2 Then
+            ChooseDirectory(directory)
+        ElseIf key = ConsoleKey.D3 Then
             Main()
         Else
             GoTo actions
         End If
+er:
+        Console.WriteLine("  ========== ERROR ==========")
+        Console.WriteLine("  " + ErrorToString())
+        Console.WriteLine("  ===========================")
     End Sub
 
     Sub CheckLibs()
@@ -141,6 +160,39 @@ actions:
         Else
             GoTo actions
         End If
+    End Sub
+
+    Sub ChooseDirectory(current As String)
+        Console.Clear()
+        WriteHeader()
+        Console.WriteLine("  ")
+        Dim number As Integer = 2
+        Console.WriteLine("  [1] [Up directory]")
+        For Each file As String In FileIO.FileSystem.GetDirectories(current, FileIO.SearchOption.SearchTopLevelOnly)
+            Console.WriteLine(String.Format("  [{0}] {1}", number.ToString, file.Substring(file.LastIndexOf("\"c))))
+            number += 1
+        Next
+actions:
+        Console.Write("  Wich number do you want to choose : ")
+        Dim choosen As String = Console.ReadLine()
+        If IsNumeric(choosen) Then
+            If choosen = 1 Then
+                directory = directory.Substring(0, directory.LastIndexOf("\"c))
+            ElseIf choosen > FileIO.FileSystem.GetDirectories(current).Count + 1 Then
+                Console.WriteLine("  Choose a valid number please !")
+                Console.WriteLine("  ")
+                GoTo actions
+            Else
+                directory = FileIO.FileSystem.GetDirectories(current)(choosen - 2)
+            End If
+        ElseIf choosen = "cancel" Then
+            Main()
+        Else
+            Console.WriteLine("  Choose a valid number please !")
+            Console.WriteLine("  ")
+            GoTo actions
+        End If
+        ChooseDirectory(directory)
     End Sub
 
     Private Sub timer_Elapsed(sender As Object, e As Timers.ElapsedEventArgs) Handles timer.Elapsed
