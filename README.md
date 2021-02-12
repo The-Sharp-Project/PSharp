@@ -12,3 +12,6 @@ Pour tester les librairies PSharp, vous devez créer un projet PSharp avec l'IDE
 
 ## PSharp IDE
 Voire [PSharp IDE](https://github.com/The-Sharp-Project/PSharp-IDE)
+
+## Licence
+Lire la [Licence](https://github.com/The-Sharp-Project/PSharp/LICENSE)
