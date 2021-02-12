@@ -7,4 +7,8 @@ PSharp est un langage de programmation facile à comprendre et utiliser. Il est 
 | ------------ | ------------ |
 |        None  |        V0.1  |
 
+## Test
+Pour tester les librairies PSharp, vous devez créer un projet PSharp avec l'IDE PSharp (bientôt disponible en béta), vous écrivez un peu de code, vous compilez et vous éxecutez le projet.
 
+## PSharp IDE
+Voire [PSharp IDE](https://github.com/The-Sharp-Project/PSharp-IDE)
